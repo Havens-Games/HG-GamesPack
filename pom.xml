@@ -17,7 +17,7 @@
     <maven.compiler.target>16</maven.compiler.target>
     <java.version>16</java.version>
     <wraithlib.version>0.2.0</wraithlib.version>
-    <minigames.version>0.1.0</minigames.version>
+    <hg-minigames.version>0.1.0</hg-minigames.version>
     <whsculpt.version>0.1.0</whsculpt.version>
   </properties>
 
@@ -54,10 +54,10 @@
     </dependency>
     <dependency>
       <groupId>net.whg.havensgames</groupId>
-      <artifactId>havensgames-minigames</artifactId>
-      <version>${minigames.version}</version>
+      <artifactId>HG-Minigames</artifactId>
+      <version>${hg-minigames.version}</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../Minigames/target/minigames-${minigames.version}.jar</systemPath>
+      <systemPath>${project.basedir}/../HG-Minigames/target/HG-Minigames-${hg-minigames.version}.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>net.whg.havensgames</groupId>
