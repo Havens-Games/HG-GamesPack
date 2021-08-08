@@ -10,7 +10,7 @@ import net.whg.minigames.MinigamesPlugin;
 public class HGGamesPack extends JavaPlugin {
     @Override
     public void onEnable() {
-        var plugin = (MinigamesPlugin) Bukkit.getPluginManager().getPlugin("Minigames");
+        var plugin = (MinigamesPlugin) Bukkit.getPluginManager().getPlugin("HG-Minigames");
         var minigameManager = plugin.getMinigameManager();
         minigameManager.registerMinigameType(new JumpPadFactory());
         minigameManager.registerMinigameType(new PacManLightsOutFactory());
