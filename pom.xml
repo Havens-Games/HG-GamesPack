@@ -16,6 +16,8 @@
     <maven.compiler.source>16</maven.compiler.source>
     <maven.compiler.target>16</maven.compiler.target>
     <java.version>16</java.version>
+    <minigames.version>0.1.0</minigames.version>
+    <whsculpt.version>0.1.0</whsculpt.version>
   </properties>
 
   <repositories>
@@ -45,9 +47,16 @@
     <dependency>
       <groupId>net.whg.havensgames</groupId>
       <artifactId>havensgames-minigames</artifactId>
-      <version>0.1.0</version>
+      <version>${minigames.version}</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../Minigames/target/minigames-0.1.0.jar</systemPath>
+      <systemPath>${project.basedir}/../Minigames/target/minigames-${minigames.version}.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>net.whg.havensgames</groupId>
+      <artifactId>WraithavenSculpt</artifactId>
+      <version>${whsculpt.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../WraithavenSculpt/target/WraithavenSculpt-${whsculpt.version}.jar</systemPath>
     </dependency>
   </dependencies>
 
