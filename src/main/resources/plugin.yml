@@ -1,0 +1,5 @@
+name: ${project.artifactId}
+main: net.whg.hg_gamespack.HGGamesPack
+version: ${project.version}
+api-version: 1.17
+depend: [HavensGames-Minigames]
