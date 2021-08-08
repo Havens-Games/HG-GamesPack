@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -42,8 +43,7 @@ public class PacManLightsOut extends Minigame {
      */
     private void prepareInventory(Player player) {
         if (player == pacman) {
-            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 0, true, false, true));
-            player.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 1, true, false, true));
         } else {
             player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 99999, 0, true, false, true));
             player.getInventory().addItem(new ItemStack(Material.IRON_SWORD));
@@ -174,7 +174,22 @@ public class PacManLightsOut extends Minigame {
             return;
 
         var loc = player.getLocation();
-        var block = loc.getWorld().getBlockAt(loc.getBlockX(), loc.getBlockY() + 3, loc.getBlockZ());
+        var world = loc.getWorld();
+        var x = loc.getBlockX();
+        var y = loc.getBlockY();
+        var z = loc.getBlockZ();
+
+        for (var a = -1; a <= 1; a++) {
+            for (var b = 2; b <= 3; b++) {
+                for (var c = -1; c <= 1; c++) {
+                    tryRemoveBlock(world, x + a, y + b, z + c);
+                }
+            }
+        }
+    }
+
+    private void tryRemoveBlock(World world, int x, int y, int z) {
+        var block = world.getBlockAt(x, y, z);
 
         if (block.getType() == Material.SEA_LANTERN) {
             removeBlock(block);
@@ -188,7 +203,7 @@ public class PacManLightsOut extends Minigame {
     private boolean removeBlock(Block block) {
         block.setType(Material.AIR);
         block.getRelative(BlockFace.UP, 2).setType(Material.AIR);
-        blocksRemaining--;
+        blocksRemaining -= 2;
 
         if (blocksRemaining == 0) {
             pacmanWin();
@@ -206,8 +221,8 @@ public class PacManLightsOut extends Minigame {
             p.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 30 * 20, 0, true, false, true));
         }
 
-        pacman.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 30 * 20, 1, true, false, true));
         pacman.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30 * 20, 1, true, false, true));
+        pacman.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
 
         new BukkitRunnable() {
             @Override
@@ -215,7 +230,7 @@ public class PacManLightsOut extends Minigame {
                 if (getPlayers().isEmpty())
                     return;
 
-                pacman.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 0, true, false, true));
+                pacman.getInventory().clear();
             }
         }.runTaskLater(Bukkit.getPluginManager().getPlugin("HG-Minigames"), 30 * 20);
     }
