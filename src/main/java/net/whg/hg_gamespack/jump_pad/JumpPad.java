@@ -36,6 +36,7 @@ public class JumpPad extends Minigame {
      * 
      * @param e - The event.
      */
+    @EventHandler
     public void onJoinMinigame(JoinMinigameEvent e) {
         if (e.getMinigame() != this)
             return;
