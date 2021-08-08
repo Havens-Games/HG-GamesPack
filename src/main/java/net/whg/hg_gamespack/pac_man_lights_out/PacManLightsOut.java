@@ -217,7 +217,7 @@ public class PacManLightsOut extends Minigame {
 
                 pacman.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 0, true, false, true));
             }
-        }.runTaskLater(Bukkit.getPluginManager().getPlugin("HavensGames-Minigames"), 30 * 20);
+        }.runTaskLater(Bukkit.getPluginManager().getPlugin("HG-Minigames"), 30 * 20);
     }
 
     private void ghostWin() {
@@ -253,7 +253,7 @@ public class PacManLightsOut extends Minigame {
 
                 player.teleport(ghostSpawnPoints.get(0));
             }
-        }.runTaskLater(Bukkit.getPluginManager().getPlugin("HavensGames-Minigames"), 8 * 20);
+        }.runTaskLater(Bukkit.getPluginManager().getPlugin("HG-Minigames"), 8 * 20);
     }
 
     private void countBlocksToBreak() {
