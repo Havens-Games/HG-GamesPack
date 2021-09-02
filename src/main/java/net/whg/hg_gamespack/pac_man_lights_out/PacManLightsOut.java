@@ -6,21 +6,18 @@ import java.util.HashMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDropItemEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
 
-import net.whg.minigames.framework.Minigame;
+import net.whg.minigames.framework.DefaultMinigame;
 import net.whg.minigames.framework.events.MinigameReadyEvent;
 import net.whg.minigames.framework.teams.Team;
 import net.whg.minigames.framework.teams.TeamUtils;
 import net.whg.utils.math.Vec3;
 
-public class PacManLightsOut extends Minigame {
+public class PacManLightsOut extends DefaultMinigame {
     private final PacManTeam pacmanTeam = new PacManTeam(this);
     private final GhostTeam ghostTeam = new GhostTeam(this);
 
-    PacManLightsOut() {
+    public PacManLightsOut() {
         var teamList = getTeamList();
         teamList.createTeam(pacmanTeam);
         teamList.createTeam(ghostTeam);
@@ -44,47 +41,6 @@ public class PacManLightsOut extends Minigame {
 
         pacmanTeam.initialize();
         ghostTeam.initialize();
-    }
-
-    /**
-     * When a player's food level changes, this event listener cancels the event.
-     * 
-     * @param e - The event.
-     */
-    @EventHandler
-    public void onFoodLevelChange(FoodLevelChangeEvent e) {
-        if (!getPlayers().contains(e.getEntity()))
-            return;
-
-        e.setCancelled(true);
-    }
-
-    /**
-     * When a player from this minigame breaks a block, this event listener cancels
-     * the event.
-     * 
-     * @param e - The event.
-     */
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent e) {
-        if (!getPlayers().contains(e.getPlayer()))
-            return;
-
-        e.setCancelled(true);
-    }
-
-    /**
-     * When a player from this minigame drops an item, this event listener cancels
-     * the event.
-     * 
-     * @param e - The event.
-     */
-    @EventHandler
-    public void onItemDrop(EntityDropItemEvent e) {
-        if (!getPlayers().contains(e.getEntity()))
-            return;
-
-        e.setCancelled(true);
     }
 
     @EventHandler
